@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Periodic table</title>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="https://image.flaticon.com/icons/png/512/719/719946.png" type="image/png">
+	<link rel="stylesheet" type="text/css" href="">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<div class="page-align">
+		<div class="table-wrapper">
+			<input type="text" class="elements-finder" value="Ки">
+			<table>
+				<tr><th></th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th><th>VI</th><th>VII</th><th colspan="3">VIII</th></tr>
+				<tr>
+					<th>1</th>
+					<td       elem-id="1" elem-sign="H"  elem-weight="1.00794"   elem-name="Водород"  elem-group="1" subgroup="A"></td>
+					<td disabled colspan="6"></td>
+					<td       elem-id="2" elem-sign="He" elem-weight="4.002602"  elem-name="Гелий"    elem-group="8" subgroup="A"></td>
+					<td disabled colspan="2" rowspan="3"></td>
+				</tr>
+				<tr>
+					<th>2</th>
+					<td metal elem-id="3"  elem-sign="Li" elem-weight="6.941"    elem-name="Литий"    elem-group="1" subgroup="A"></td>
+					<td metal elem-id="4"  elem-sign="Be" elem-weight="9.0122"   elem-name="Берилий"  elem-group="2" subgroup="A"></td>
+					<td       elem-id="5"  elem-sign="B"  elem-weight="10.811"   elem-name="Бор"      elem-group="3" subgroup="A"></td>
+					<td       elem-id="6"  elem-sign="C"  elem-weight="12.011"   elem-name="Углерод"  elem-group="4" subgroup="A"></td>
+					<td       elem-id="7"  elem-sign="N"  elem-weight="14.007"   elem-name="Азот"     elem-group="5" subgroup="A"></td>
+					<td       elem-id="8"  elem-sign="O"  elem-weight="15.999"   elem-name="Кислород" elem-group="6" subgroup="A"></td>
+					<td       elem-id="9"  elem-sign="F"  elem-weight="18.998"   elem-name="Фтор"     elem-group="7" subgroup="A"></td>
+					<td       elem-id="10" elem-sign="Ne" elem-weight="20.179"   elem-name="Неон"     elem-group="8" subgroup="A"></td>
+				</tr>
+				<tr>
+					<th>3</th>
+					<td metal elem-id="11" elem-sign="Na" elem-weight="22.99"    elem-name="Натрий"   elem-group="1" subgroup="A"></td>
+					<td metal elem-id="12" elem-sign="Mg" elem-weight="24.305"   elem-name="Магний"   elem-group="2" subgroup="A"></td>
+					<td metal elem-id="13" elem-sign="Al" elem-weight="26.9815"  elem-name="Алюминий" elem-group="3" subgroup="A"></td>
+					<td       elem-id="14" elem-sign="Si" elem-weight="28.086"   elem-name="Кремний"  elem-group="4" subgroup="A"></td>
+					<td       elem-id="15" elem-sign="P"  elem-weight="30.974"   elem-name="Фосфор"   elem-group="5" subgroup="A"></td>
+					<td       elem-id="16" elem-sign="S"  elem-weight="32.066"   elem-name="Сера"     elem-group="6" subgroup="A"></td>
+					<td       elem-id="17" elem-sign="Cl" elem-weight="35.453"   elem-name="Хлор"     elem-group="7" subgroup="A"></td>
+					<td       elem-id="18" elem-sign="Ar" elem-weight="39.948"   elem-name="Аргон"    elem-group="8" subgroup="A"></td>
+				</tr>
+				<tr>
+					<th rowspan="2">4</th>
+					<td metal elem-id="19" elem-sign="K"  elem-weight="39.098"   elem-name="Калий"    elem-group="1" subgroup="A"></td>
+					<td metal elem-id="20" elem-sign="Ca" elem-weight="40.08"    elem-name="Кальций"  elem-group="2" subgroup="A"></td>
+					<td metal elem-id="21" elem-sign="Sc" elem-weight="44.956"   elem-name="Скандий"  elem-group="3" subgroup="B"></td>
+					<td metal elem-id="22" elem-sign="Ti" elem-weight="47.9"     elem-name="Титан"    elem-group="4" subgroup="B"></td>
+					<td metal elem-id="23" elem-sign="V"  elem-weight="50.941"   elem-name="Ванадий"  elem-group="5" subgroup="B"></td>
+					<td metal elem-id="24" elem-sign="Cr" elem-weight="51.996"   elem-name="Хром"     elem-group="6" subgroup="B"></td>
+					<td metal elem-id="25" elem-sign="Mn" elem-weight="54.938"   elem-name="Марганец" elem-group="7" subgroup="B"></td>
+					<td metal elem-id="26" elem-sign="Fe" elem-weight="55.847"   elem-name="Железо"   elem-group="8" subgroup="B"></td>
+					<td metal elem-id="27" elem-sign="Co" elem-weight="58.933"   elem-name="Кобальт"  elem-group="8" subgroup="B"></td>
+					<td metal elem-id="28" elem-sign="Ni" elem-weight="58.7"     elem-name="Никель"   elem-group="8" subgroup="B"></td>
+				</tr>
+				<tr>
+					<td metal elem-id="29" elem-sign="Cu" elem-weight="63.546"   elem-name="Медь"     elem-group="1" subgroup="B"></td>
+					<td metal elem-id="30" elem-sign="Zn" elem-weight="65.39"    elem-name="Цинк"     elem-group="2" subgroup="B"></td>
+					<td metal elem-id="31" elem-sign="Ga" elem-weight="69.72"    elem-name="Галий"    elem-group="3" subgroup="A"></td>
+					<td metal elem-id="32" elem-sign="Ge" elem-weight="72.59"    elem-name="Германий" elem-group="4" subgroup="A"></td>
+					<td       elem-id="33" elem-sign="As" elem-weight="74.992"   elem-name="Мышьяк"   elem-group="5" subgroup="A"></td>
+					<td       elem-id="34" elem-sign="Se" elem-weight="78.96"    elem-name="Селен"    elem-group="6" subgroup="A"></td>
+					<td       elem-id="35" elem-sign="Br" elem-weight="79.904"   elem-name="Бром"     elem-group="7" subgroup="A"></td>
+					<td       elem-id="36" elem-sign="Kr" elem-weight="83.8"     elem-name="Криптон"  elem-group="8" subgroup="A"></td>
+					<td disabled colspan="2"></td>
+				</tr>
+				<tr>
+					<th rowspan="2">5</th>
+					<td metal elem-id="37" elem-sign="Rb" elem-weight="85.468"   elem-name="Рубидий"  elem-group="1" subgroup="A"></td>
+					<td metal elem-id="38" elem-sign="Sr" elem-weight="87.62"    elem-name="Стронций" elem-group="2" subgroup="A"></td>
+					<td metal elem-id="39" elem-sign="Y"  elem-weight="88.906"   elem-name="Иттрий"   elem-group="3" subgroup="B"></td>
+					<td metal elem-id="40" elem-sign="Zr" elem-weight="91.22"    elem-name="Цирконий" elem-group="4" subgroup="B"></td>
+					<td metal elem-id="41" elem-sign="Nb" elem-weight="92.906"   elem-name="Ниобий"   elem-group="5" subgroup="B"></td>
+					<td metal elem-id="42" elem-sign="Mo" elem-weight="95.94"    elem-name="Молибден" elem-group="6" subgroup="B"></td>
+					<td metal elem-id="43" elem-sign="Tc" elem-weight="97.91"    elem-name="Технеций" elem-group="7" subgroup="B"></td>
+					<td metal elem-id="44" elem-sign="Ru" elem-weight="101.07"   elem-name="Рутений"  elem-group="8" subgroup="B"></td>
+					<td metal elem-id="45" elem-sign="Rh" elem-weight="102.906"  elem-name="Родий"    elem-group="8" subgroup="B"></td>
+					<td metal elem-id="46" elem-sign="Pd" elem-weight="106.4"    elem-name="Палладий" elem-group="8" subgroup="B"></td>
+				</tr>
+				<tr>
+					<td metal elem-id="47" elem-sign="Ag" elem-weight="107.868"  elem-name="Серебро"  elem-group="1" subgroup="B"></td>
+					<td metal elem-id="48" elem-sign="Cd" elem-weight="112.41"   elem-name="Кадмий"   elem-group="2" subgroup="B"></td>
+					<td metal elem-id="49" elem-sign="In" elem-weight="114.82"   elem-name="Индий"    elem-group="3" subgroup="A"></td>
+					<td metal elem-id="50" elem-sign="Sn" elem-weight="118.71"   elem-name="Олово"    elem-group="4" subgroup="A"></td>
+					<td metal elem-id="51" elem-sign="Sb" elem-weight="121.75"   elem-name="Сурьма"   elem-group="5" subgroup="A"></td>
+					<td       elem-id="52" elem-sign="Te" elem-weight="127.6"    elem-name="Теллур"   elem-group="6" subgroup="A"></td>
+					<td       elem-id="53" elem-sign="I"  elem-weight="126.9045" elem-name="Йод"      elem-group="7" subgroup="A"></td>
+					<td       elem-id="54" elem-sign="Xe" elem-weight="131.29"   elem-name="Ксенон"   elem-group="8" subgroup="A"></td>
+					<td disabled colspan="2"></td>
+				</tr>
+				<tr>
+					<th rowspan="2">6</th>
+					<td metal elem-id="55" elem-sign="Cs" elem-weight="132.905"  elem-name="Цезий"    elem-group="1" subgroup="A"></td>
+					<td metal elem-id="56" elem-sign="Ba" elem-weight="137.33"   elem-name="Барий"    elem-group="2" subgroup="A"></td>
+					<td metal elem-id="57" elem-sign="La" elem-weight="138.9055" elem-name="Лантан"   elem-group="3" subgroup="B"></td>
+					<td metal elem-id="72" elem-sign="Hf" elem-weight="178.49"   elem-name="Гафний"   elem-group="4" subgroup="B"></td>
+					<td metal elem-id="73" elem-sign="Ta" elem-weight="180.9479" elem-name="Тантал"   elem-group="5" subgroup="B"></td>
+					<td metal elem-id="74" elem-sign="W"  elem-weight="183.85"   elem-name="Вольфрам" elem-group="6" subgroup="B"></td>
+					<td metal elem-id="75" elem-sign="Re" elem-weight="186.207"  elem-name="Рений"    elem-group="7" subgroup="B"></td>
+					<td metal elem-id="76" elem-sign="Os" elem-weight="190.2"    elem-name="Осмий"    elem-group="8" subgroup="B"></td>
+					<td metal elem-id="77" elem-sign="Ir" elem-weight="192.22"   elem-name="Иридий"   elem-group="8" subgroup="B"></td>
+					<td metal elem-id="78" elem-sign="Pt" elem-weight="195.08"   elem-name="Платина"  elem-group="8" subgroup="B"></td>
+				</tr>
+				<tr>
+					<td metal elem-id="79" elem-sign="Au" elem-weight="196.967"  elem-name="Золото"   elem-group="1" subgroup="B"></td>
+					<td metal elem-id="80" elem-sign="Hg" elem-weight="200.59"   elem-name="Ртуть"    elem-group="2" subgroup="B"></td>
+					<td metal elem-id="81" elem-sign="Tl" elem-weight="204.38"   elem-name="Таллий"   elem-group="3" subgroup="A"></td>
+					<td metal elem-id="82" elem-sign="Pb" elem-weight="207.19"   elem-name="Свинец"   elem-group="4" subgroup="B"></td>
+					<td metal elem-id="83" elem-sign="Bi" elem-weight="208.98"   elem-name="Висмут"   elem-group="5" subgroup="A"></td>
+					<td metal elem-id="84" elem-sign="Po" elem-weight="209.98"   elem-name="Полоний"  elem-group="6" subgroup="A"></td>
+					<td metal elem-id="85" elem-sign="At" elem-weight="209.99"   elem-name="Астат"    elem-group="7" subgroup="A"></td>
+					<td       elem-id="86" elem-sign="Rn" elem-weight="[222]"    elem-name="Радон"    elem-group="8" subgroup="A"></td>
+					<td disabled colspan="2"></td>
+				</tr>
+				<tr>
+					<th>7</th>
+					<td metal elem-id="87"  elem-sign="Fr" elem-weight="[223]"   elem-name="Франций"     elem-group="1" subgroup="A"></td>
+					<td metal elem-id="88"  elem-sign="Ra" elem-weight="[226]"   elem-name="Радий"       elem-group="2" subgroup="A"></td>
+					<td metal elem-id="89"  elem-sign="Ac" elem-weight="[227]"   elem-name="Актиний"     elem-group="3" subgroup="B"></td>
+					<td metal elem-id="104" elem-sign="Rf" elem-weight="[261]"   elem-name="Фезерфордий" elem-group="4" subgroup="B"></td>
+					<td metal elem-id="105" elem-sign="Db" elem-weight="[262]"   elem-name="Дубний"      elem-group="5" subgroup="B"></td>
+					<td metal elem-id="106" elem-sign="Sg" elem-weight="[263]"   elem-name="Сиборгий"    elem-group="6" subgroup="B"></td>
+					<td metal elem-id="107" elem-sign="Bh" elem-weight="[262]"   elem-name="Борий"       elem-group="7" subgroup="B"></td>
+					<td metal elem-id="108" elem-sign="Hs" elem-weight="[265]"   elem-name="Хассий"      elem-group="8" subgroup="B"></td>
+					<td metal elem-id="109" elem-sign="Mt" elem-weight="[266]"   elem-name="Мейтнерий"   elem-group="8" subgroup="B"></td>
+					<td disabled></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="black-screen"></div>
+</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		var maxWidthTD = 0;
+		$.each($("td:not([disabled])"), function(key) {
+			obj = $("td:not([disabled])").eq(key);
+			htmlTD = `
+				<div class="element-wrapper" subgroup="${obj.attr("subgroup")}">
+					<div class="element-top">
+						<div class="element-sign">${obj.attr("elem-sign")}</div>
+						<div class="element-id">${obj.attr("elem-id")}</div>
+						<div class="element-weight">${obj.attr("elem-weight")}</div>
+					</div>
+					<div class="element-name">${obj.attr("elem-name")}</div>
+				</div>
+			`;
+			obj.html(htmlTD);
+			maxWidthTD = maxWidthTD < obj.outerWidth() ? obj.innerWidth() : maxWidthTD;
+		});
+		$("td:not([disabled])").innerWidth(maxWidthTD);
+
+		/* ------- */
+
+		$.each($("tr:first-child th"), function(key) {
+			obj = $("tr:first-child th").eq(key+1);
+			htmlTD = `
+				<div class="index-of-group">
+					<span>A</span>
+					${obj.html()}
+					<span>B</span>
+				</div>
+			`;
+			obj.html(htmlTD);
+		});
+
+		/* ------- */
+
+		$(".index-of-group span").hover(
+			function () {
+				var thisObj = this;
+				var l = $(thisObj).parent().parent().index();
+				$(`td[elem-group="${l}"][subgroup="${$(thisObj).text()}"]`).css({"background":"#323232","color":"white"});
+			},
+			function () {
+				var thisObj = this;
+				var l = $(thisObj).parent().parent().index();
+				$(`td[elem-group="${l}"][subgroup="${$(thisObj).text()}"]`).css({"background":"","color":""});
+			}
+		);
+
+		/* ------- */
+
+		$(".elements-finder").focus(function () {
+			$(".black-screen").fadeIn(200);
+			$(".elements-finder").css({"transform":"scale(1.000000000001)","background":"white"});
+		});
+		$(".elements-finder").focusout(function () {
+			$(".black-screen").fadeOut(200);
+			$(".elements-finder").attr("style","");
+			$("td:not([disabled])").removeClass("found");
+		});
+		$(".elements-finder").on("keyup focus", function(){
+			$.each($("td:not([disabled])"), function(key) {
+				obj = $("td:not([disabled])").eq(key);
+				val = $(".elements-finder").val().toLowerCase();
+				if (
+					val && (
+					obj.attr("elem-id").toLowerCase().match(val) ||
+					obj.attr("elem-name").toLowerCase().match(val) ||
+					obj.attr("elem-sign").toLowerCase().match(val))
+				) {
+					obj.addClass("found");
+				} else {
+					obj.removeClass("found");
+				}
+			});
+		});
+
+	});
+</script>
+<style type="text/css">
+
+* {
+	margin: 0;
+	padding: 0;
+	border-collapse: collapse;
+}
+
+body {
+	background-color: #f0f0f0;
+}
+
+.page-align {
+	width: 100%;
+	min-height: 100vh;
+	margin: 0 auto;
+	padding: 10px;
+	box-sizing: border-box;
+	display: grid;
+	justify-content: center;
+	align-items: center;
+}
+
+.elements-finder {
+	font-size: 20px;
+	padding: 5px 10px;
+	outline: none;
+	box-shadow: none;
+	border: 2px solid #919191;
+	border-radius: 5px;
+	background: transparent;
+	margin-bottom: 20px;
+	z-index: 60;
+	transition: all .2s ease-in-out;
+}
+
+table {
+	font-size: 17px;
+	font-family: sans-serif;
+	table-layout: fixed;
+}
+
+td[disabled] {
+	border: 0px solid transparent;
+}
+
+th, td {
+	border: 1px solid #878787;
+	padding: 4px;
+	transition: all .1s ease-in-out;
+	cursor: default;
+}
+
+.index-of-group {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.index-of-group span {
+	font-weight: normal;
+	font-size: 15px;
+}
+
+td:not([disabled]):not(.found):hover {
+	transform: scale(1.1);
+	background: white;
+	box-shadow: 0px 0px 10px 2px rgba(0,0,0,.4);
+	position: relative;
+	z-index: 60;
+}
+
+.found {
+	position: relative;
+	z-index: 60;
+	transform: scale(1.0000000001);
+	background: white;
+}
+
+.element-top {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto auto;
+}
+
+.element-id {
+	font-size: 13px;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+.element-weight {
+	font-size: 12px;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.element-wrapper[subgroup="A"] .element-id, .element-wrapper[subgroup="A"] .element-weight {
+	text-align: right;
+}
+
+.element-wrapper .element-sign {
+	font-size: 25px;
+}
+
+.element-wrapper[subgroup="A"] .element-sign {
+	grid-column-start: 1;
+	grid-column-end: 1;
+	grid-row-start: 1;
+	grid-row-end: 3;
+}
+
+.element-wrapper[subgroup="B"] .element-sign {
+	grid-column-start: 3;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 3;
+	text-align: right;
+}
+
+.element-name {
+	font-size: 14.5px;
+}
+
+.element-wrapper[subgroup="B"] .element-name {
+	text-align: right;
+}
+
+.black-screen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.5);
+	z-index: 5;
+	display: none;
+}
+
+</style>

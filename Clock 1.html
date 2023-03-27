@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> </title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="digits">
+		<span id="hours"></span>
+		<span> : </span>
+		<span id="minuts"></span>
+		<span> : </span>
+		<span id="seconds"></span>
+	</div>
+	<div id="clock">
+		
+		<div id="circle">
+			<canvas id="canvas"></canvas>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+	function hournew(h) {
+		if(h>12)h-=12;
+		return h;
+	}
+
+	var d = new Date();
+	var	width = 550,
+		height = 550,
+		dx = width/2,
+		dy = height/2,		
+		sec = d.getSeconds(),
+		min = d.getMinutes(),
+		hour = d.getHours(),
+		a1 = sec*6+90,
+		a2 = min*6+90+a1/60,
+		newH = hournew(hour),
+		a3 = (newH*30+90)+((a2-90)/12),
+		spanS = sec*1000,
+		spanM = min,
+		spanH = hour;
+
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	canvas.width = width;
+	canvas.height = height;
+
+	function arrow1(x,y,w,h,a){
+		var fdx = x + w,
+			fdy = y + h;
+		a = a * Math.PI/180;
+
+		ctx.save();
+		ctx.translate(fdx,fdy);
+		ctx.rotate(a);
+		ctx.translate(-fdx,-fdy);
+		
+		ctx.strokeStyle = '#ff0000';		
+		ctx.strokeRect(x,y,w+30,h);		
+		ctx.restore();		
+	}
+	function arrow2(x,y,w,h,a){
+		var fdx = x + w,
+			fdy = y + h;
+		a = a * Math.PI/180;
+
+		ctx.save();
+		ctx.translate(fdx,fdy);
+		ctx.rotate(a);
+		ctx.translate(-fdx,-fdy);		
+		ctx.strokeRect(x,y,w,h);
+		ctx.restore();	
+	}
+	function arrow3(x,y,w,h,a){
+		var fdx = x + w,
+			fdy = y + h;
+		a = a * Math.PI/180;
+
+		ctx.save();
+		ctx.translate(fdx,fdy);
+		ctx.rotate(a);
+		ctx.translate(-fdx,-fdy);		
+		ctx.strokeRect(x,y,w,h);
+		ctx.restore();
+	}
+	function labels(){
+		for(var i=0; i<=11; i++){
+			var grad = (i*Math.PI/6)+2*Math.PI/3,
+				mW = 225,
+				mH = 225;
+			ctx.fillStyle = "#000";
+			ctx.font = "40pt Arial";
+			if(i==11){ctx.fillText(i+1, dx-Math.cos(grad)*245-30, dx-Math.sin(grad)*245+15);} else
+			if(i==10){ctx.fillText(i+1, dx-Math.cos(grad)*245-25, dx-Math.sin(grad)*245+15);} else
+			if(i==9){ctx.fillText(i+1, dx-Math.cos(grad)*245-20, dx-Math.sin(grad)*245+15);} else
+			ctx.fillText(i+1, dx-Math.cos(grad)*245-15, dx-Math.sin(grad)*245+15);
+		}
+
+	}
+	setInterval(function(){
+		ctx.clearRect(0,0,width,height);
+		if(a1>360+90)a1=90;
+		if(a2>360+90)a2=90;
+		if(a3>360+90)a3=90;
+		labels();
+		arrow1(dx-250,dy,250,1,a1);
+		arrow2(dx-250,dy,250,1,a2);
+		arrow2(dx-150,dy,150,2,a3);						
+		a1+=0.06;
+		a2+=0.06/60;
+		a3+=0.06/60/60;
+		spanS+=10;
+		if(Math.floor(spanS/1000==60)) {spanS=0;spanM++;}
+		if(spanM==60) {spanM=0;spanH++;}
+		if(spanH==24) spanH=0;
+		document.getElementById('seconds').innerHTML = Math.floor(spanS/1000);
+		document.getElementById('minuts').innerHTML = spanM;
+		document.getElementById('hours').innerHTML = spanH;
+	}, 10)
+
+	</script>
+</body>
+</html>
+<style type="text/css">
+
+body{
+	background-color: #FFEBC9;
+}	
+#clock{
+	margin: 60px auto;
+	width: 600px;
+	height: 600px;
+	border-radius: 20%;
+	background-color: #000;
+}
+#circle{
+	margin: 25px 25px;
+	width: 550px;
+	height: 550px;
+	border-radius: 50%;
+	background-color: #f7f7f7;
+	z-index: 1;
+	position: absolute;
+}
+#digits{
+	position: absolute;
+	margin: 0;
+	top: 10px;
+	left: 668px;
+	font-size: 40px;
+}
+
+</style>

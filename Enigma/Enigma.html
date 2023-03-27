@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Enigma</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.8"></script>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<main id="enigma">
+		<div class="rotors">
+			<div class="controls">
+				<div class="control" @click="rotor_1--">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 292.362 292.362"><path d="M286.935,197.286L159.028,69.379c-3.613-3.617-7.895-5.424-12.847-5.424s-9.233,1.807-12.85,5.424L5.424,197.286C1.807,200.9,0,205.184,0,210.132s1.807,9.233,5.424,12.847c3.621,3.617,7.902,5.428,12.85,5.428h255.813c4.949,0,9.233-1.811,12.848-5.428c3.613-3.613,5.427-7.898,5.427-12.847S290.548,200.9,286.935,197.286z"/></svg>
+				</div>
+				<div class="control" @click="rotor_2--">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 292.362 292.362"><path d="M286.935,197.286L159.028,69.379c-3.613-3.617-7.895-5.424-12.847-5.424s-9.233,1.807-12.85,5.424L5.424,197.286C1.807,200.9,0,205.184,0,210.132s1.807,9.233,5.424,12.847c3.621,3.617,7.902,5.428,12.85,5.428h255.813c4.949,0,9.233-1.811,12.848-5.428c3.613-3.613,5.427-7.898,5.427-12.847S290.548,200.9,286.935,197.286z"/></svg>
+				</div>
+				<div class="control" @click="rotor_3--">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 292.362 292.362"><path d="M286.935,197.286L159.028,69.379c-3.613-3.617-7.895-5.424-12.847-5.424s-9.233,1.807-12.85,5.424L5.424,197.286C1.807,200.9,0,205.184,0,210.132s1.807,9.233,5.424,12.847c3.621,3.617,7.902,5.428,12.85,5.428h255.813c4.949,0,9.233-1.811,12.848-5.428c3.613-3.613,5.427-7.898,5.427-12.847S290.548,200.9,286.935,197.286z"/></svg>
+				</div>
+			</div>
+			<div class="values">
+				<div class="rotor" @wheel="rotor_1 = $event.deltaY < 0 ? rotor_1 - 1 : rotor_1 + 1">{{ rotor_1 }}</div>
+				<div class="rotor" @wheel="rotor_2 = $event.deltaY < 0 ? rotor_2 - 1 : rotor_2 + 1">{{ rotor_2 }}</div>
+				<div class="rotor" @wheel="rotor_3 = $event.deltaY < 0 ? rotor_3 - 1 : rotor_3 + 1">{{ rotor_3 }}</div>
+			</div>
+			<div class="controls">
+				<div class="control" @click="rotor_1++">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 292.362 292.362"><path d="M286.935,69.377c-3.614-3.617-7.898-5.424-12.848-5.424H18.274c-4.952,0-9.233,1.807-12.85,5.424C1.807,72.998,0,77.279,0,82.228c0,4.948,1.807,9.229,5.424,12.847l127.907,127.907c3.621,3.617,7.902,5.428,12.85,5.428s9.233-1.811,12.847-5.428L286.935,95.074c3.613-3.617,5.427-7.898,5.427-12.847C292.362,77.279,290.548,72.998,286.935,69.377z"/></svg>
+				</div>
+				<div class="control" @click="rotor_2++">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 292.362 292.362"><path d="M286.935,69.377c-3.614-3.617-7.898-5.424-12.848-5.424H18.274c-4.952,0-9.233,1.807-12.85,5.424C1.807,72.998,0,77.279,0,82.228c0,4.948,1.807,9.229,5.424,12.847l127.907,127.907c3.621,3.617,7.902,5.428,12.85,5.428s9.233-1.811,12.847-5.428L286.935,95.074c3.613-3.617,5.427-7.898,5.427-12.847C292.362,77.279,290.548,72.998,286.935,69.377z"/></svg>
+				</div>
+				<div class="control" @click="rotor_3++">
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 292.362 292.362"><path d="M286.935,69.377c-3.614-3.617-7.898-5.424-12.848-5.424H18.274c-4.952,0-9.233,1.807-12.85,5.424C1.807,72.998,0,77.279,0,82.228c0,4.948,1.807,9.229,5.424,12.847l127.907,127.907c3.621,3.617,7.902,5.428,12.85,5.428s9.233-1.811,12.847-5.428L286.935,95.074c3.613-3.617,5.427-7.898,5.427-12.847C292.362,77.279,290.548,72.998,286.935,69.377z"/></svg>
+				</div>
+			</div>
+		</div>
+
+		<div class="keyboard">
+			<div class="letters">
+				<div class="row">
+					<div id="letter_q" class="letter">Q</div>
+					<div id="letter_w" class="letter">W</div>
+					<div id="letter_e" class="letter">E</div>
+					<div id="letter_r" class="letter">R</div>
+					<div id="letter_t" class="letter">T</div>
+					<div id="letter_z" class="letter">Z</div>
+					<div id="letter_u" class="letter">U</div>
+					<div id="letter_i" class="letter">I</div>
+					<div id="letter_o" class="letter">O</div>
+				</div>
+				<div class="row">
+					<div id="letter_a" class="letter">A</div>
+					<div id="letter_s" class="letter">S</div>
+					<div id="letter_d" class="letter">D</div>
+					<div id="letter_f" class="letter">F</div>
+					<div id="letter_g" class="letter">G</div>
+					<div id="letter_h" class="letter">H</div>
+					<div id="letter_j" class="letter">J</div>
+					<div id="letter_k" class="letter">K</div>
+				</div>
+				<div class="row">
+					<div id="letter_p" class="letter">P</div>
+					<div id="letter_y" class="letter">Y</div>
+					<div id="letter_x" class="letter">X</div>
+					<div id="letter_c" class="letter">C</div>
+					<div id="letter_v" class="letter">V</div>
+					<div id="letter_b" class="letter">B</div>
+					<div id="letter_n" class="letter">N</div>
+					<div id="letter_m" class="letter">M</div>
+					<div id="letter_l" class="letter">L</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+	<script type="text/javascript">
+
+		function module_(number) {
+			return number < 0 ? 25 : (number > 25 ? number - 26 : number);
+		}
+
+		let vEnigma = new Vue({
+			el: '#enigma',
+			data: {
+				rotor_1: 0,
+				rotor_2: 0,
+				rotor_3: 0
+			},
+			watch: {
+				rotor_1: function (value) {
+					this.rotor_1 = module_(value);
+					if (value > 25) {
+						this.rotor_3 = 0;
+						this.rotor_2 = 0;
+					}
+				},
+				rotor_2: function (value) {
+					this.rotor_2 = module_(value);
+					if (value > 25) this.rotor_1++;
+				},
+				rotor_3: function (value) {
+					this.rotor_3 = module_(value);
+					if (value > 25) this.rotor_2++;
+				}
+			}
+		});
+
+		let isKeyDown = false;
+		let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+		document.addEventListener('keydown', function (e) {
+			if (!(/Key/g).test(e.code)) return;
+			e.stopPropagation();
+			e.preventDefault();
+			if (isKeyDown) return;
+
+
+
+			let letter = e.code.replace('Key', '').toLowerCase();
+			let position = alphabet.indexOf(letter);
+			position = module_(position + vEnigma.rotor_3);
+			position = module_(position + vEnigma.rotor_2);
+			position = module_(position + vEnigma.rotor_1);
+			position = 25 - position;
+
+			document.getElementById('letter_'+alphabet[position]).classList.add('active');
+
+
+			vEnigma.rotor_3++;
+			isKeyDown = true;
+			var audio = new Audio();
+			audio.src = 'keydown.mp3';
+			audio.autoplay = true;
+		});
+
+		document.addEventListener('keyup', function (e) {
+			e.stopPropagation();
+			e.preventDefault();
+			if (!isKeyDown) return;
+			isKeyDown = false;
+			document.querySelector('.letter.active').classList.remove('active');
+			var audio = new Audio();
+			audio.src = 'keyup.mp3';
+			audio.autoplay = true;
+		});
+
+
+
+	</script>
+
+	<style type="text/css">
+
+		* {
+			margin: 0;
+			padding: 0;
+			color: white;
+			font-family: 'Roboto Mono', monospace;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			-webkit-user-select: none;
+		}
+		html {
+			font-size: 16px;
+		}
+		body {
+			background-color: #0d0d0d;
+		}
+		main {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			height: 100vh;
+		}
+		.rotors {
+			width: 180px;
+			margin: 0 auto;
+			margin-bottom: 50px;
+		}
+		.values {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-gap: 15px;
+			border-top: 1px solid #323232;
+			border-bottom: 1px solid #323232;
+			padding: 0 20px;
+		}
+		.controls {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			grid-gap: 15px;
+			padding: 0 20px;
+			text-align: center;
+		}
+		.control {
+			cursor: pointer;
+		}
+		.control svg {
+			fill: gray;
+			width: 10px;
+		}
+		.control:hover svg {
+			fill: white;
+		}
+		.rotor {
+			text-align: center;
+			font-size: 1.25rem;
+			background-color: #181818;
+			padding: 3px 0;
+			overflow: hidden;
+		}
+		.keyboard {
+			margin: 0 auto;
+			max-width: max-content;
+			display: grid;
+			grid-template-columns: 1fr;
+		}
+		.keyboard .row {
+			margin: 0 auto;
+			display: flex;
+			max-width: max-content;
+		}
+		.keyboard .row:not(:last-child) { margin-bottom: 30px; }
+		.keyboard .row .letter {
+			width: 60px;
+			height: 60px;
+			background-color: #272727;
+			border-radius: 99999px;
+			box-shadow: inset 0 0 8px 0px rgba(0,0,0,.7);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: rgba(255,255,255,.5);
+			font-size: 2rem;
+			transition: all .1s ease-in-out;
+		}
+		.keyboard .row .letter:not(:last-child) { margin-right: 30px; }
+		.keyboard .row .letter.active {
+			/*color: #ffd8a4;*/
+			color: white;
+			text-shadow: 0 0 5px #e0d6c9, 0 0 10px #f9d09a, 0 0 10px #f9d09a, 0 0 20px #ffd49b;
+			background-color: #2c2b29;
+			box-shadow: 0 0 23px -7px #6b5b46;
+		}
+
+	</style>
+</body>
+</html>

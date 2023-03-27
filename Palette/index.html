@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pallet test</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="pallet.jQuery.js"></script>
+	<link rel="stylesheet" type="text/css" href="pallet.plugin.css">
+</head>
+<body>
+
+	<main>
+		<div class="hello"></div>
+		<div>
+			<div id="pallet_1">
+				
+			</div>
+		</div>
+	</main>
+
+	<script type="text/javascript">
+
+		let p = $.Palette({
+			container: '#pallet_1',
+		});
+
+		p.paletteUpdating(function (e) {
+			// Palette is updating
+
+			p.getColor() // return current color in HEX format
+
+			$('.hello').css('background', '#' + p.getColor());
+		});
+		p.paletteUpdatingStopped(function (e) {
+			// Updating of the palette was stopped
+		});
+		p.paletteUpdatingStarted(function (e) {
+			// Updating of the palette was started
+		});
+
+	</script>
+
+	<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+		outline: none;
+		border-radius: none;
+		box-shadow: none;
+		font-family: sans-serif;
+	}
+	main {
+		display: grid;
+		grid-template-columns: 1fr .5fr;
+		grid-gap: 20px;
+		min-height: 100vh;
+		padding: 50px;
+		box-sizing: border-box;
+	}
+	main #pallet_1 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
+</style>
+</body>
+</html>

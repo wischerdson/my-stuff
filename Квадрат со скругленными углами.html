@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+	function draw() {
+		var stk = document.getElementById('stk');
+		r = 40;
+		x = y = 20;
+		width = height = 100;
+		var cnx = stk.getContext('2d');
+		cnx.beginPath();
+		cnx.moveTo(x+r, y);                  
+		cnx.lineTo(width+x+r, y); 
+		cnx.arc(x+r+width, y+r, r, Math.PI*1.5, 0, false);
+		cnx.moveTo(width+r*2+x, r+y);        
+		cnx.lineTo(width+r*2+x, height+r+y);
+		cnx.arc(x+r+width, y+r+height, r, 0, Math.PI/2, false);
+		cnx.moveTo(width+x+r, height+r*2+y); 
+		cnx.lineTo(x+r, height+r*2+y);
+		cnx.arc(x+r, y+r+height, r, Math.PI/2, Math.PI, false);
+		cnx.moveTo(x, height+y+r);
+		cnx.lineTo(x, y+r);
+		cnx.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2, false);
+		cnx.strokeStyle = '#000';
+		cnx.stroke();
+	}
+</script>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>1010</title>
+</head>
+<body onload="draw ()">
+	<canvas id="stk" width="600" height="600"></canvas>
+</body>
+</html>

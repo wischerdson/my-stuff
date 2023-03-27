@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<script type="text/javascript">
+
+		const combinations = function (elements, length, callback)
+		{
+			length = length || elements.length
+			length = length > elements.length ? elements.length : length
+			callback = callback || (() => {})
+
+			const removeArrayColumn = function (array, column)
+			{
+				return array.map(function (row) {
+					return row.filter((cell, index) => index !== column)
+				})
+			}
+
+			const removeArrayRow = function (array, row)
+			{
+				return array.filter((column, index) => index !== row)
+			}
+
+			const removeArrayCross = function (array, x, y)
+			{
+				return removeArrayRow(removeArrayColumn(array, x), y)
+			}
+
+			const com = function (array, callback, result)
+			{
+				result = result || []
+
+				array[0].forEach(function (value, x) {
+					if (array.length <= 1) {
+						callback(result.concat(value))
+					} else {
+						const newArray = removeArrayCross(array, x, 0)
+						com(newArray, callback, result.concat(value))
+					}
+				})
+			}
+
+			const prepareMatrix = function (array, rows)
+			{
+				let result = []
+				for (; rows > 0; rows--) {
+					result.push(array)
+				}
+				return result
+			}
+
+			return (function () {
+				let result = []
+				com(prepareMatrix(elements, length), function (value) {
+					result.push(value)
+					callback(value)
+				})
+				return result
+			} ())
+		}
+
+		const words = function (string)
+		{
+			const array = string.split('')
+			const result = []
+
+			for (let i = array.length; i > 1; i--) {
+				const combs = combinations(array, i)
+				combs.forEach(function (item) {
+					result.push(item.join(''))
+				})
+			}
+
+			return result
+		}
+
+		const a = words('abc')
+		console.log(a)
+
+	</script>
+
+</body>
+</html>

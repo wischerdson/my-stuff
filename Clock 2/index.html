@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Title</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="snap.svg-min.js"></script>
+</head>
+<body>
+	<svg></svg>
+</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var s = Snap("svg");
+
+		var main_radius = 250;
+		var smallDivision_radius = main_radius*0.98;
+		var bigDivision_radius = main_radius*0.94;
+		var digital_radius = main_radius*0.85;
+		var secArrow_radius = main_radius*0.85;
+		var secReversSideArrow_radius = main_radius*0.12;
+		var minArrow_radius = secArrow_radius;
+		var hourArrow_radius = main_radius*0.52;
+		var minuteArrowCircle_radius = main_radius*0.024;
+		var secondArrowCircle_radius = main_radius*0.016;
+
+
+
+
+		var svgCanvas = {
+			width: $("svg").outerWidth(),
+			height: $("svg").outerHeight()
+		}
+		var divisionsStr = "";
+		var divisionsStr1 = "";
+
+		for(var i=1; i<=60; i++) {
+			var sin = Snap.sin(i*6);
+			var cos = -Snap.cos(i*6);
+			if (i%5 != 0) divisionsStr += "M"+(sin*main_radius+svgCanvas.width/2)+","+(cos*main_radius+svgCanvas.height/2)+" "+(sin*smallDivision_radius+svgCanvas.width/2)+","+(cos*smallDivision_radius+svgCanvas.height/2);
+			else divisionsStr1 += "M"+(sin*main_radius+svgCanvas.width/2)+","+(cos*main_radius+svgCanvas.height/2)+" "+(sin*bigDivision_radius+svgCanvas.width/2)+","+(cos*bigDivision_radius+svgCanvas.height/2);
+		}
+
+		var divisions = s.path(divisionsStr);
+		var divisions1 = s.path(divisionsStr1);
+
+		for(var i=1; i<=12; i++) {
+			var sin = Snap.sin(i*30);
+			var cos = -Snap.cos(i*30);
+			s.text(svgCanvas.width/2+sin*digital_radius, svgCanvas.height/2+cos*digital_radius, i).addClass("digit");
+		}
+
+		$(".digit").css({
+			"font-size": "30px"
+		})
+		
+		var minuteArrowCircle = s.circle(svgCanvas.width/2, svgCanvas.height/2, minuteArrowCircle_radius);
+		var secondArrowCircle = s.circle(svgCanvas.width/2, svgCanvas.height/2, secondArrowCircle_radius);
+
+		var secArrow_small = false;
+		var secArrow_big = false;
+		var minArrow = false;
+		var hourArrow = false;
+
+		secondArrowCircle.attr({
+			"fill": "none",
+			"stroke-width": "1px",
+			"stroke": "#d10000"
+		});
+		minuteArrowCircle.attr({
+			"fill": "none",
+			"stroke-width": "2.8px",
+			"stroke": "white"
+		});
+
+		function setSecondArrow(deg) {
+			var localData = {
+				x1: svgCanvas.width/2 + Snap.sin(deg)*secondArrowCircle_radius,
+				y1: svgCanvas.height/2 - Snap.cos(deg)*secondArrowCircle_radius,
+				x2: svgCanvas.width/2 + Snap.sin(deg)*secArrow_radius,
+				y2: svgCanvas.height/2 - Snap.cos(deg)*secArrow_radius
+			}
+			var localData_2 = {
+				x1: svgCanvas.width/2 - Snap.sin(deg)*secReversSideArrow_radius,
+				y1: svgCanvas.height/2 + Snap.cos(deg)*secReversSideArrow_radius,
+				x2: svgCanvas.width/2 - Snap.sin(deg)*secondArrowCircle_radius,
+				y2: svgCanvas.height/2 + Snap.cos(deg)*secondArrowCircle_radius
+			}
+			secArrow_small = !secArrow_small ? s.line(localData_2) : secArrow_small;
+			secArrow_small.animate(localData_2, 400, mina.elastic);
+			secArrow_small.attr({
+				"stroke-width": "1px",
+				"stroke": "#d10000"
+			});
+			secArrow_big = !secArrow_big ? s.line(localData) : secArrow_big;
+			secArrow_big.animate(localData, 400, mina.elastic);
+			secArrow_big.attr({
+				"stroke-width": "1px",
+				"stroke": "#d10000"
+			});
+		}
+		function setMinuteArrow(deg) {
+			var localData = {
+				x1:svgCanvas.width/2+Snap.sin(deg)*minuteArrowCircle_radius,
+				y1:svgCanvas.height/2-Snap.cos(deg)*minuteArrowCircle_radius,
+				x2:svgCanvas.width/2+Snap.sin(deg)*minArrow_radius,
+				y2:svgCanvas.height/2-Snap.cos(deg)*minArrow_radius
+			}
+			minArrow = !minArrow ? s.line(localData) : minArrow;
+			minArrow.animate(localData, 400, mina.elastic);
+			minArrow.attr({
+				"stroke-width": "2px",
+				"stroke": "white"
+			});
+		}
+		function setHourArrow(deg) {
+			var localData = {
+				x1:svgCanvas.width/2+Snap.sin(deg)*minuteArrowCircle_radius,
+				y1:svgCanvas.height/2-Snap.cos(deg)*minuteArrowCircle_radius,
+				x2:svgCanvas.width/2+Snap.sin(deg)*hourArrow_radius,
+				y2:svgCanvas.height/2-Snap.cos(deg)*hourArrow_radius
+			}
+			hourArrow = !hourArrow ? s.line(localData) : hourArrow;
+			hourArrow.animate(localData, 400, mina.elastic);
+			hourArrow.attr({
+				"stroke-width": "3px",
+				"stroke": "white"
+			});
+		}
+		
+		setInterval(function () {
+			var date = new Date();
+			var secDeg = date.getSeconds() * 6;
+			var minDeg = (date.getMinutes() * 6) + secDeg/60;
+			var hourDeg = (date.getHours() * 30) + minDeg/12;
+			
+			setHourArrow(hourDeg);
+			setMinuteArrow(minDeg);
+			setSecondArrow(secDeg);
+
+			var sound = new Audio();
+			sound.pause();
+			sound.currentTime = 0;
+			sound.src = "clock_sound.wav";
+			sound.volume = 0.2;
+			sound.play();
+		}, 1000);
+	});
+</script>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+svg {
+	width: 100%;
+	height: 99vh;
+}
+body { background-color: #0f1017; }
+svg * {
+	stroke-linecap: round;
+}
+svg text {
+	text-anchor: middle;
+	dominant-baseline: mathematical;
+	fill: #adadad;
+}
+svg path {
+	
+	stroke: #adadad;;
+}
+</style>

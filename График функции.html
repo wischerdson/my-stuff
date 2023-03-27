@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+	var width = 1000,
+		height = 700,
+		unit = 30,
+		unit1 = 30,
+		pX = width/2,
+		pY = height/2,
+		dX = 0,
+		dY = 0,
+		x = 0,
+		y = 0,
+		su1 = 0,
+		su = 0,
+		sgl1 = 0.4,
+		sgl = 0.4,
+		otdfu = function(x){
+			y = Math.cos(x); 	//МАТЕМАТИЧЕСКАЯ ФУНКЦИЯ
+			return y;
+		};
+
+	function sglA() {
+		sgl = document.getElementById('sgl').value;
+		if(sgl>10)sgl=10;
+		if(sgl<1)sgl=1;
+		if(sgl==3)sgl=4;
+		if(sgl==6)sgl=5;
+		if(sgl==7)sgl=8;
+		if(sgl==9)sgl=8;
+		sgl/=10;
+		nkn();
+		setTimeout("axis()", 10);
+	}
+	if (document.addEventListener) {
+ 		if ('onwheel' in document) {
+  		  document.addEventListener("wheel", eve);
+  		} else if ('onmousewheel' in document) {
+   			document.addEventListener("mousewheel", eve);
+  		} else {
+   			document.addEventListener("MozMousePixelScroll", eve);
+ 		}
+	} else {
+		document.attachEvent("onmousewheel", eve);
+	}
+
+	function eve(e){
+		e = e || window.event;
+		var delta = e.deltaY || e.detail || e.wheelDelta;
+		e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+		su+=delta/-3;
+		if(su1<su){unit+=2;}
+		if(su1>su){
+			if(unit<4){unit=2; su=0}
+				else unit-=2;			
+		}
+		su1 = su;
+		axis();
+	}
+	function nkn() {
+		var fu = document.getElementById('fu');
+		var fu = fu.getContext("2d");
+		for(var sch=-width; sch<=width && sch<=height; sch+=sgl1){
+			x = sch;			
+			fu.beginPath();
+			fu.moveTo(dX, dY);
+			fu.lineTo(pX+x*unit1, pY-otdfu(x)*unit1);
+			fu.lineWidth = 2.5;
+			fu.strokeStyle = '#fff';			
+			fu.stroke();
+			fu.closePath();
+			dY = pY-otdfu(x)*unit1;
+			dX = pX+x*unit1;
+		}
+		sgl1 = sgl;
+	}
+	function axis() {	
+		var fu = document.getElementById('fu');
+		var fu = fu.getContext("2d");
+
+		for(var sch=-width; sch<=width && sch<=height; sch+=sgl){
+			x = sch;			
+			fu.beginPath();
+			fu.moveTo(dX, dY);
+			fu.lineTo(pX+x*unit1, pY-otdfu(x)*unit1);
+			fu.lineWidth = 2.5;
+			fu.strokeStyle = '#fff';			
+			fu.stroke();
+			fu.closePath();
+			dY = pY-otdfu(x)*unit1;
+			dX = pX+x*unit1;
+		}
+
+		fu.beginPath();
+		for(var iU=0; iU<=pX; iU+=unit1){
+			fu.moveTo(pX+iU, pY);
+			fu.lineTo(pX+iU, height);
+			fu.moveTo(pX-iU, pY);
+			fu.lineTo(pX-iU, 0);
+			fu.moveTo(pX-iU, pY);
+			fu.lineTo(pX-iU, height);
+			fu.moveTo(pX+iU, pY);
+			fu.lineTo(pX+iU, 0);
+		}										//Очистка сетки
+		for(var iU=0; iU<=pY-7; iU+=unit1){
+			fu.moveTo(pX, pY+iU);
+			fu.lineTo(width, pY+iU);
+			fu.moveTo(pX, pY-iU);
+			fu.lineTo(width, pY-iU);
+			fu.moveTo(pX, pY-iU);
+			fu.lineTo(0, pY-iU);
+			fu.moveTo(pX, pY+iU);
+			fu.lineTo(0, pY+iU);
+		}
+		fu.lineWidth = 2;
+		fu.strokeStyle = "#fff";
+		fu.stroke();
+		fu.closePath();
+		
+		fu.beginPath();
+		for(var iU=0; iU<=pX; iU+=unit){
+			fu.moveTo(pX+iU, pY);
+			fu.lineTo(pX+iU, height);
+			fu.moveTo(pX-iU, pY);
+			fu.lineTo(pX-iU, 0);
+			fu.moveTo(pX-iU, pY);
+			fu.lineTo(pX-iU, height);
+			fu.moveTo(pX+iU, pY);
+			fu.lineTo(pX+iU, 0);
+		}										//Сетка
+		for(var iU=0; iU<=pY-7; iU+=unit){
+			fu.moveTo(pX, pY+iU);
+			fu.lineTo(width, pY+iU);
+			fu.moveTo(pX, pY-iU);
+			fu.lineTo(width, pY-iU);
+			fu.moveTo(pX, pY-iU);
+			fu.lineTo(0, pY-iU);
+			fu.moveTo(pX, pY+iU);
+			fu.lineTo(0, pY+iU);
+		}
+		fu.strokeStyle = "#eaeaea";
+		fu.stroke();
+		fu.closePath();
+
+		fu.beginPath();
+		fu.moveTo(pX, 0);
+		fu.lineTo(pX, height);					//Оси координат
+		fu.moveTo(0, pY);
+		fu.lineTo(width, pY);
+
+		for(var iU=0; iU<=pX-7*2; iU+=unit){
+			fu.moveTo(pX+iU, pY-unit/2);
+			fu.lineTo(pX+iU, pY+unit/2);
+			fu.moveTo(pX-iU, pY-unit/2);
+			fu.lineTo(pX-iU, pY+unit/2);
+		}										//Разметка осей координат
+		for(var iU=0; iU<=pY-7*3; iU+=unit){
+			fu.moveTo(pX-unit/2, pY-iU);
+			fu.lineTo(pX+unit/2, pY-iU);
+			fu.moveTo(pX-unit/2, pY+iU);
+			fu.lineTo(pX+unit/2, pY+iU);
+		}
+		
+		fu.moveTo(pX, 0);
+		fu.lineTo(pX-7, 7*2);
+		fu.moveTo(pX, 0);
+		fu.lineTo(pX+7, 7*2);
+		fu.moveTo(width, pY);					//Направляющие стрелочки
+		fu.lineTo(width-7*2, pY-7);
+		fu.moveTo(width, pY);
+		fu.lineTo(width-7*2, pY+7);
+
+		fu.strokeStyle = "#000";
+		fu.stroke();
+		fu.closePath();
+
+		for(var sch=-width; sch<=width && sch<=height; sch+=sgl){
+			x = sch;			
+			fu.beginPath();
+			fu.moveTo(dX, dY);
+			fu.lineTo(pX+x*unit, pY-otdfu(x)*unit);
+			fu.lineWidth = 1;
+			fu.strokeStyle = '#D30000';			
+			fu.stroke();
+			fu.closePath();
+			dY = pY-otdfu(x)*unit;
+			dX = pX+x*unit;
+		}
+		unit1 = unit;
+	}
+</script>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> </title>
+</head>
+<body onload="axis()">
+	<span id="span1">Сглаживание   </span>
+	<input type="text" id="sgl" placeholder="4" maxlength="2"/>
+	<div id="ok" onclick="sglA(),cons()"><span>Apply</span></div>
+	<div id="divCan"><canvas width="1000" height="700" id="fu"></canvas></div>
+</body>
+</html>
+<style type="text/css">
+	#constructor{
+		background-color: #E2FFCE;
+		font-size: 22px;
+		color: #C20000;
+		width: 200px;
+		margin: 50px 100px;
+	}
+	#span1{
+		font-size: 20px;
+		position: absolute;
+	}
+	#divCan{
+		width:1000px;
+		height:700px; 
+		margin: 25px 25%;
+	}
+	#ok{
+		position: absolute;
+		text-align: center;
+		line-height: 47px;
+		width: 50px;
+		height: 50px;
+		background-color: #8BD7FF;
+		border-radius: 50px;
+		transition: all 0.1s ease-in-out;
+	    -webkit-transition: all 0.1s ease-in-out;
+	    -moz-transition: all 0.1s ease-in-out;
+	    -o-transition: all 0.1s ease-in-out;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;	
+        cursor: default;
+        margin-left: 214px; 
+        margin-top: -10px; 
+	}
+	#sgl {
+		margin: 0 131px;
+		position: absolute;
+		background-color: #E2FFCE;
+		font-size: 22px;
+		color: #C20000;
+		width: 50px;
+	}
+	#ok:hover{
+		opacity: 0.6;
+		transition: all 0.1s ease-in-out;
+	    -webkit-transition: all 0.1s ease-in-out;
+	    -moz-transition: all 0.1s ease-in-out;
+	    -o-transition: all 0.1s ease-in-out;
+	}
+</style>
